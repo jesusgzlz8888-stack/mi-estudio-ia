@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi Estudio IA</title>
+<style>
+:root {
+  --pink: #f52d89;
+  --light: #fff1f7;
+  --ink: #252238;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: var(--ink);
+}
+header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffe0ed;
+}
+.logo { font-size: 22px; font-weight: 800; }
+.logo span { color: var(--pink); }
+main { max-width: 850px; margin: auto; padding: 24px 18px; }
+.hero {
+  background: linear-gradient(135deg,#fff0f7,#fff9fc);
+  padding: 28px 22px;
+  border-radius: 24px;
+  text-align: center;
+}
+h1 { font-size: 32px; margin: 8px 0; }
+p { line-height: 1.5; color: #6d687d; }
+h2 { font-size: 21px; }
+.panel {
+  border: 1px solid #f5dce7;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 22px;
+}
+button, .upload {
+  display: inline-block;
+  border: 0;
+  border-radius: 13px;
+  background: var(--pink);
+  color: white;
+  padding: 14px 18px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+.upload { width: 100%; background: var(--light); color: var(--pink);
+  border: 1px dashed var(--pink); }
+input[type=file] { display: none; }
+.preview {
+  display: none;
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+  margin-top: 14px;
+  border-radius: 14px;
+  background: #faf7fa;
+}
+label { display: block; font-weight: 700; margin: 17px 0 8px; }
+textarea, select, input[type=text] {
+  width: 100%;
+  border: 1px solid #e8dce3;
+  border-radius: 12px;
+  padding: 13px;
+  font: inherit;
+  background: #fff;
+}
+textarea { min-height: 115px; resize: vertical; }
+.full { width: 100%; margin-top: 16px; }
+.cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+.card {
+  background: var(--light);
+  border-radius: 16px;
+  padding: 18px 12px;
+}
+.card strong { display: block; margin-bottom: 6px; }
+.small { font-size: 12px; color: #777185; }
+footer { text-align: center; padding: 25px; color: #888; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">✦ Mi Estudio <span>IA</span></div>
+  <span aria-label="Perfil">◉</span>
+</header>
+
+<main>
+  <section class="hero">
+    <p>CREA · IMAGINA · ANIMA</p>
+    <h1>Tu imaginación cobra vida</h1>
+    <p>Tu espacio personal para crear escenas con inteligencia artificial.</p>
+    <button onclick="document.getElementById('creator').scrollIntoView({behavior:'smooth'})">
+      Crear ahora ✨
+    </button>
+  </section>
+
+  <section class="panel" id="creator">
+    <h2>01 · Elige tu personaje</h2>
+    <p>Sube una imagen clara de un personaje adulto ficticio.</p>
+    <label class="upload" for="image">＋ Seleccionar imagen</label>
+    <input id="image" type="file" accept="image/*">
+    <img id="preview" class="preview" alt="Vista previa del personaje">
+    <p class="small">La vista previa es local. La imagen no se envía a ningún servicio desde esta página.</p>
+  </section>
+
+  <section class="panel">
+    <h2>02 · Diseña tu escena</h2>
+    <label for="prompt">Describe tu idea en español</label>
+    <textarea id="prompt" placeholder="Describe el movimiento, la expresión, la cámara, la iluminación y el ambiente..."></textarea>
+
+    <label for="style">Estilo visual</label>
+    <select id="style">
+      <option>Cinematográfico</option>
+      <option>Realista</option>
+      <option>Fantasía</option>
+      <option>Romántico</option>
+      <option>Animación artística</option>
+    </select>
+
+    <label for="duration">Duración deseada</label>
+    <select id="duration">
+      <option>5 segundos</option>
+      <option>10 segundos</option>
+      <option>15 segundos</option>
+    </select>
+
+    <button class="full" onclick="preparePrompt()">Preparar mi creación ✨</button>
+    <button class="full" style="background:#30263b" onclick="copyPrompt()">Copiar descripción</button>
+    <p id="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="panel">
+    <h2>03 · Tu espacio creativo</h2>
+    <div class="cards">
+      <div class="card"><strong>✦ Personajes</strong><p>Organiza tus referencias visuales.</p></div>
+      <div class="card"><strong>▶️ Videos IA</strong><p>Prepara escenas para un generador compatible.</p></div>
+      <div class="card"><strong>◈ Identidad visual</strong><p>Busca mantener los rasgos del personaje.</p></div>
+      <div class="card"><strong>⚙️ Preferencias</strong><p>Personaliza el estilo de tus creaciones.</p></div>
+    </div>
+  </section>
+
+  <p class="small">Esta versión es una interfaz inicial. La generación real de videos requiere conectar un servicio de IA compatible.</p>
+</main>
+
+<footer>Mi Estudio IA · Tu espacio, tu imaginación.</footer>
+
+<script>
+const imageInput = document.getElementById('image');
+const preview = document.getElementById('preview');
+let previewUrl = null;
+
+imageInput.addEventListener('change', () => {
+  if (previewUrl) URL.revokeObjectURL(previewUrl);
+  const file = imageInput.files[0];
+  if (!file) {
+    preview.style.display = 'none';
+    return;
+  }
+  previewUrl = URL.createObjectURL(file);
+  preview.src = previewUrl;
+  preview.style.display = 'block';
+});
+
+function preparePrompt() {
+  const prompt = document.getElementById('prompt').value.trim();
+  const style = document.getElementById('style').value;
+  const duration = document.getElementById('duration').value;
+  const status = document.getElementById('status');
+
+  if (!imageInput.files.length) {
+    status.textContent = 'Primero selecciona una imagen.';
+    return;
+  }
+  if (!prompt) {
+    status.textContent = 'Escribe una descripción para tu escena.';
+    return;
+  }
+  status.textContent = 'Tu idea está preparada. Para generar el video falta conectar un servicio de IA compatible. Estilo: ' + style + '. Duración: ' + duration + '.';
+}
+
+function copyPrompt() {
+  const prompt = document.getElementById('prompt').value.trim();
+  if (!prompt) {
+    document.getElementById('status').textContent = 'Escribe una descripción primero.';
+    return;
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(prompt)
+      .then(() => document.getElementById('status').textContent = 'Descripción copiada.')
+      .catch(() => document.getElementById('status').textContent = 'Selecciona y copia el texto manualmente.');
+  } else {
+    document.getElementById('status').textContent = 'Selecciona y copia el texto manualmente.';
+  }
+}
+</script>
+</body>
+</html>
