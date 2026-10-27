@@ -5,202 +5,177 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mi Estudio IA</title>
 <style>
-:root {
-  --pink: #f52d89;
-  --light: #fff1f7;
-  --ink: #252238;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff;
-  color: var(--ink);
-}
-header {
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #ffe0ed;
-}
-.logo { font-size: 22px; font-weight: 800; }
-.logo span { color: var(--pink); }
-main { max-width: 850px; margin: auto; padding: 24px 18px; }
-.hero {
-  background: linear-gradient(135deg,#fff0f7,#fff9fc);
-  padding: 28px 22px;
-  border-radius: 24px;
-  text-align: center;
-}
-h1 { font-size: 32px; margin: 8px 0; }
-p { line-height: 1.5; color: #6d687d; }
-h2 { font-size: 21px; }
-.panel {
-  border: 1px solid #f5dce7;
-  border-radius: 20px;
-  padding: 20px;
-  margin-top: 22px;
-}
-button, .upload {
-  display: inline-block;
-  border: 0;
-  border-radius: 13px;
-  background: var(--pink);
-  color: white;
-  padding: 14px 18px;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-}
-.upload { width: 100%; background: var(--light); color: var(--pink);
-  border: 1px dashed var(--pink); }
-input[type=file] { display: none; }
-.preview {
-  display: none;
-  width: 100%;
-  max-height: 360px;
-  object-fit: contain;
-  margin-top: 14px;
-  border-radius: 14px;
-  background: #faf7fa;
-}
-label { display: block; font-weight: 700; margin: 17px 0 8px; }
-textarea, select, input[type=text] {
-  width: 100%;
-  border: 1px solid #e8dce3;
-  border-radius: 12px;
-  padding: 13px;
-  font: inherit;
-  background: #fff;
-}
-textarea { min-height: 115px; resize: vertical; }
-.full { width: 100%; margin-top: 16px; }
-.cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
-.card {
-  background: var(--light);
-  border-radius: 16px;
-  padding: 18px 12px;
-}
-.card strong { display: block; margin-bottom: 6px; }
-.small { font-size: 12px; color: #777185; }
-footer { text-align: center; padding: 25px; color: #888; }
+:root{--pink:#f52d89;--light:#fff1f7;--ink:#252238;--muted:#6d687d;--line:#f5dce7}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#fff;color:var(--ink)}
+header{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffe0ed}
+.logo{font-size:22px;font-weight:800}.logo span{color:var(--pink)}
+main{max-width:850px;margin:auto;padding:24px 18px}
+.hero{background:linear-gradient(135deg,#fff0f7,#fff9fc);padding:28px 22px;border-radius:24px;text-align:center}
+h1{font-size:32px;margin:8px 0}p{line-height:1.5;color:var(--muted)}h2{font-size:21px}
+.panel{border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:22px}
+button,.upload{display:inline-block;border:0;border-radius:13px;background:var(--pink);color:white;padding:13px 17px;font-size:16px;cursor:pointer;text-align:center}
+button:disabled{opacity:.55;cursor:not-allowed}
+.upload{width:100%;background:var(--light);color:var(--pink);border:1px dashed var(--pink)}
+input[type=file]{display:none}
+.preview{display:none;width:100%;max-height:360px;object-fit:contain;margin-top:14px;border-radius:14px;background:#faf7fa}
+label{display:block;font-weight:700;margin:17px 0 8px}
+textarea,select,input[type=text]{width:100%;border:1px solid #e8dce3;border-radius:12px;padding:13px;font:inherit;background:#fff}
+textarea{min-height:115px;resize:vertical}
+.full{width:100%;margin-top:12px}.secondary{background:#30263b}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:var(--light);border-radius:16px;padding:16px 12px}.card strong{display:block;margin-bottom:6px}
+.small{font-size:12px;color:#777185}.status{padding:10px 12px;border-radius:10px;background:#faf7fa;min-height:20px;overflow-wrap:anywhere}
+.status:empty{display:none}.success{background:#eefaf1;color:#216a37}.warning{background:#fff6e5;color:#79521b}
+footer{text-align:center;padding:25px;color:#888}
+@media(max-width:520px){h1{font-size:27px}.cards{grid-template-columns:1fr}.panel{padding:16px}}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">✦ Mi Estudio <span>IA</span></div>
-  <span aria-label="Perfil">◉</span>
-</header>
-
+<header><div class="logo">✦ Mi Estudio <span>IA</span></div><span aria-label="Perfil">◉</span></header>
 <main>
-  <section class="hero">
-    <p>CREA · IMAGINA · ANIMA</p>
-    <h1>Tu imaginación cobra vida</h1>
-    <p>Tu espacio personal para crear escenas con inteligencia artificial.</p>
-    <button onclick="document.getElementById('creator').scrollIntoView({behavior:'smooth'})">
-      Crear ahora ✨
-    </button>
-  </section>
+<section class="hero">
+<p>CREA · IMAGINA · ANIMA</p>
+<h1>Tu imaginación cobra vida</h1>
+<p>Prepara personajes y escenas para tus herramientas creativas de IA.</p>
+<button type="button" id="goCreator">Crear ahora ✨</button>
+</section>
 
-  <section class="panel" id="creator">
-    <h2>01 · Elige tu personaje</h2>
-    <p>Sube una imagen clara de un personaje adulto ficticio.</p>
-    <label class="upload" for="image">＋ Seleccionar imagen</label>
-    <input id="image" type="file" accept="image/*">
-    <img id="preview" class="preview" alt="Vista previa del personaje">
-    <p class="small">La vista previa es local. La imagen no se envía a ningún servicio desde esta página.</p>
-  </section>
+<section class="panel" id="creator">
+<h2>01 · Elige tu personaje</h2>
+<p>Selecciona una imagen de un personaje adulto ficticio. La imagen se procesa en esta página y no se envía a un servidor.</p>
+<label class="upload" for="image">＋ Seleccionar imagen</label>
+<input id="image" type="file" accept="image/*">
+<img id="preview" class="preview" alt="Vista previa del personaje">
+<div id="imageInfo" class="status" role="status" aria-live="polite"></div>
+<button type="button" class="full secondary" id="analyzeBtn" disabled>Analizar imagen</button>
+<div id="analysis" class="status" role="status" aria-live="polite"></div>
+<p class="small">Nota: esta versión comprueba la imagen local y prepara una ficha básica; todavía no realiza reconocimiento facial avanzado ni identifica a una persona.</p>
+</section>
 
-  <section class="panel">
-    <h2>02 · Diseña tu escena</h2>
-    <label for="prompt">Describe tu idea en español</label>
-    <textarea id="prompt" placeholder="Describe el movimiento, la expresión, la cámara, la iluminación y el ambiente..."></textarea>
+<section class="panel">
+<h2>02 · Diseña tu escena</h2>
+<label for="prompt">Describe tu idea en español</label>
+<textarea id="prompt" placeholder="Describe el movimiento, la expresión, la cámara, la iluminación y el ambiente..."></textarea>
+<label for="style">Estilo visual</label>
+<select id="style"><option>Cinematográfico</option><option>Fotorrealista</option><option>Fantasía</option><option>Romántico</option><option>Animación artística</option></select>
+<label for="duration">Duración deseada</label>
+<select id="duration"><option>5 segundos</option><option>10 segundos</option><option>15 segundos</option></select>
+<label for="camera">Movimiento de cámara</label>
+<select id="camera"><option>Movimiento suave y estable</option><option>Primer plano del rostro</option><option>Plano medio</option><option>Plano general</option><option>Cámara lenta</option></select>
+<label for="lighting">Iluminación</label>
+<select id="lighting"><option>Luz cinematográfica suave</option><option>Luz natural</option><option>Contraste dramático</option><option>Luz cálida</option><option>Neón y ambiente nocturno</option></select>
+<button type="button" class="full" id="prepareBtn">Preparar mi creación ✨</button>
+<button type="button" class="full secondary" id="copyBtn">Copiar descripción preparada</button>
+<button type="button" class="full secondary" id="downloadBtn">Descargar descripción .txt</button>
+<div id="status" class="status" role="status" aria-live="polite"></div>
+<label for="output">Descripción preparada</label>
+<textarea id="output" placeholder="Aquí aparecerá tu prompt completo..." readonly></textarea>
+</section>
 
-    <label for="style">Estilo visual</label>
-    <select id="style">
-      <option>Cinematográfico</option>
-      <option>Realista</option>
-      <option>Fantasía</option>
-      <option>Romántico</option>
-      <option>Animación artística</option>
-    </select>
-
-    <label for="duration">Duración deseada</label>
-    <select id="duration">
-      <option>5 segundos</option>
-      <option>10 segundos</option>
-      <option>15 segundos</option>
-    </select>
-
-    <button class="full" onclick="preparePrompt()">Preparar mi creación ✨</button>
-    <button class="full" style="background:#30263b" onclick="copyPrompt()">Copiar descripción</button>
-    <p id="status" role="status" aria-live="polite"></p>
-  </section>
-
-  <section class="panel">
-    <h2>03 · Tu espacio creativo</h2>
-    <div class="cards">
-      <div class="card"><strong>✦ Personajes</strong><p>Organiza tus referencias visuales.</p></div>
-      <div class="card"><strong>▶️ Videos IA</strong><p>Prepara escenas para un generador compatible.</p></div>
-      <div class="card"><strong>◈ Identidad visual</strong><p>Busca mantener los rasgos del personaje.</p></div>
-      <div class="card"><strong>⚙️ Preferencias</strong><p>Personaliza el estilo de tus creaciones.</p></div>
-    </div>
-  </section>
-
-  <p class="small">Esta versión es una interfaz inicial. La generación real de videos requiere conectar un servicio de IA compatible.</p>
+<section class="panel">
+<h2>03 · Tu espacio creativo</h2>
+<div class="cards">
+<div class="card"><strong>✦ Personajes</strong><p>Usa una imagen de referencia y prepara una ficha visual.</p></div>
+<div class="card"><strong>▶ Videos IA</strong><p>La generación real aún necesita conectar un servicio compatible.</p></div>
+<div class="card"><strong>◈ Identidad visual</strong><p>Incluye instrucciones para intentar conservar los rasgos visuales.</p></div>
+<div class="card"><strong>⚙️ Preferencias</strong><p>Elige estilo, duración, cámara e iluminación.</p></div>
+</div>
+</section>
+<p class="small">Versión inicial: carga y análisis básico de imagen, preparación de prompts y descarga local. La generación de videos no está conectada todavía.</p>
 </main>
-
 <footer>Mi Estudio IA · Tu espacio, tu imaginación.</footer>
-
 <script>
-const imageInput = document.getElementById('image');
-const preview = document.getElementById('preview');
-let previewUrl = null;
+const imageInput=document.getElementById('image');
+const preview=document.getElementById('preview');
+const imageInfo=document.getElementById('imageInfo');
+const analysis=document.getElementById('analysis');
+const analyzeBtn=document.getElementById('analyzeBtn');
+const statusBox=document.getElementById('status');
+const output=document.getElementById('output');
+let previewUrl=null, selectedFile=null, imageDimensions=null, preparedText='';
 
-imageInput.addEventListener('change', () => {
-  if (previewUrl) URL.revokeObjectURL(previewUrl);
-  const file = imageInput.files[0];
-  if (!file) {
-    preview.style.display = 'none';
-    return;
+document.getElementById('goCreator').addEventListener('click',()=>document.getElementById('creator').scrollIntoView({behavior:'smooth'}));
+
+imageInput.addEventListener('change',()=>{
+  selectedFile=imageInput.files && imageInput.files[0] ? imageInput.files[0] : null;
+  imageDimensions=null;
+  analysis.textContent='';
+  imageInfo.className='status';
+  if(previewUrl){URL.revokeObjectURL(previewUrl);previewUrl=null;}
+  if(!selectedFile){
+    preview.style.display='none';preview.removeAttribute('src');imageInfo.textContent='No se seleccionó ninguna imagen.';analyzeBtn.disabled=true;return;
   }
-  previewUrl = URL.createObjectURL(file);
-  preview.src = previewUrl;
-  preview.style.display = 'block';
+  if(!selectedFile.type.startsWith('image/')){
+    imageInfo.textContent='El archivo seleccionado no parece ser una imagen.';analyzeBtn.disabled=true;return;
+  }
+  previewUrl=URL.createObjectURL(selectedFile);
+  preview.onload=()=>{
+    imageDimensions={width:preview.naturalWidth,height:preview.naturalHeight};
+    imageInfo.className='status success';
+    imageInfo.textContent='Imagen cargada correctamente: '+imageDimensions.width+' × '+imageDimensions.height+' píxeles. Tamaño: '+formatBytes(selectedFile.size)+'.';
+    analyzeBtn.disabled=false;
+  };
+  preview.onerror=()=>{imageInfo.className='status warning';imageInfo.textContent='No se pudo abrir esta imagen. Prueba con JPG, PNG o WEBP.';analyzeBtn.disabled=true;};
+  preview.src=previewUrl;preview.style.display='block';
 });
 
-function preparePrompt() {
-  const prompt = document.getElementById('prompt').value.trim();
-  const style = document.getElementById('style').value;
-  const duration = document.getElementById('duration').value;
-  const status = document.getElementById('status');
+analyzeBtn.addEventListener('click',()=>{
+  if(!selectedFile||!imageDimensions){analysis.className='status warning';analysis.textContent='Primero selecciona una imagen válida y espera a que cargue.';return;}
+  const ratio=(imageDimensions.width/imageDimensions.height).toFixed(2);
+  const orientation=imageDimensions.width>imageDimensions.height?'horizontal':imageDimensions.width<imageDimensions.height?'vertical':'cuadrada';
+  analysis.className='status success';
+  analysis.textContent='Ficha básica creada. Formato: '+(selectedFile.type||'imagen')+'. Orientación: '+orientation+'. Relación de aspecto: '+ratio+'. Resolución: '+imageDimensions.width+' × '+imageDimensions.height+'. Esto no confirma si hay un rostro: el detector facial avanzado se añadirá en una siguiente versión.';
+});
 
-  if (!imageInput.files.length) {
-    status.textContent = 'Primero selecciona una imagen.';
-    return;
-  }
-  if (!prompt) {
-    status.textContent = 'Escribe una descripción para tu escena.';
-    return;
-  }
-  status.textContent = 'Tu idea está preparada. Para generar el video falta conectar un servicio de IA compatible. Estilo: ' + style + '. Duración: ' + duration + '.';
-}
+document.getElementById('prepareBtn').addEventListener('click',()=>{
+  const idea=document.getElementById('prompt').value.trim();
+  if(!selectedFile){setStatus('Primero selecciona una imagen de referencia.','warning');return;}
+  if(!idea){setStatus('Escribe una idea para la escena antes de prepararla.','warning');document.getElementById('prompt').focus();return;}
+  const style=document.getElementById('style').value;
+  const duration=document.getElementById('duration').value;
+  const camera=document.getElementById('camera').value;
+  const lighting=document.getElementById('lighting').value;
+  const dims=imageDimensions?`Imagen de referencia: ${imageDimensions.width} × ${imageDimensions.height} píxeles (${selectedFile.type||'imagen'}).`:'Imagen de referencia seleccionada.';
+  preparedText=[
+    'PROMPT PARA VIDEO',
+    'Personaje: usa la imagen de referencia como guía visual para el mismo personaje adulto ficticio. Mantén, en la medida que permita el generador, los rasgos faciales, peinado, color de ojos, tono de piel y proporciones visibles consistentes. No inventes detalles que no se distingan en la referencia.',
+    dims,
+    'Escena: '+idea,
+    'Estilo visual: '+style+'.',
+    'Duración objetivo: '+duration+'.',
+    'Cámara: '+camera+'.',
+    'Iluminación: '+lighting+'.',
+    'Continuidad: movimientos naturales y coherentes, anatomía estable, rostro consistente entre fotogramas, sin cambios inesperados de vestuario ni apariencia.',
+    'Calidad: imagen nítida, movimiento fluido y composición estable.'
+  ].join('\\n\\n');
+  output.value=preparedText;
+  setStatus('Descripción preparada. Puedes copiarla o descargarla. Todavía no se ha generado ningún video.','success');
+});
 
-function copyPrompt() {
-  const prompt = document.getElementById('prompt').value.trim();
-  if (!prompt) {
-    document.getElementById('status').textContent = 'Escribe una descripción primero.';
-    return;
-  }
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(prompt)
-      .then(() => document.getElementById('status').textContent = 'Descripción copiada.')
-      .catch(() => document.getElementById('status').textContent = 'Selecciona y copia el texto manualmente.');
-  } else {
-    document.getElementById('status').textContent = 'Selecciona y copia el texto manualmente.';
-  }
-}
+document.getElementById('copyBtn').addEventListener('click',async()=>{
+  const text=output.value.trim();
+  if(!text){setStatus('Primero pulsa «Preparar mi creación».','warning');return;}
+  try{
+    if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}
+    else{output.focus();output.select();const ok=document.execCommand('copy');if(!ok)throw new Error('copy failed');}
+    setStatus('Descripción preparada y copiada.','success');
+  }catch(e){output.focus();output.select();setStatus('El texto está seleccionado. Pulsa Ctrl+C para copiarlo.','warning');}
+});
+
+document.getElementById('downloadBtn').addEventListener('click',()=>{
+  const text=output.value.trim();
+  if(!text){setStatus('Primero pulsa «Preparar mi creación».','warning');return;}
+  const blob=new Blob([text],{type:'text/plain;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='mi-estudio-ia-prompt.txt';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  setStatus('Descarga iniciada: mi-estudio-ia-prompt.txt','success');
+});
+
+function setStatus(message,kind){statusBox.className='status '+(kind||'');statusBox.textContent=message;}
+function formatBytes(bytes){if(bytes<1024)return bytes+' B';if(bytes<1048576)return (bytes/1024).toFixed(1)+' KB';return (bytes/1048576).toFixed(1)+' MB';}
 </script>
+</body>
+</html>
 </body>
 </html>
